@@ -30,7 +30,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/v1/auth/signup",
                                 "/api/v1/auth/signin"
-                        ).permitAll() // Public authentication endpoints
+                        ).permitAll()
                         .requestMatchers(
                                 "/api/v1/tasks/add",
                                 "/api/v1/tasks/all",
@@ -55,7 +55,8 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(UserDetailsService userDetailsService) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setPasswordEncoder(passwordEncoder()); // Ensure password encoder is set
         return new ProviderManager(authProvider);
     }
+
 }
